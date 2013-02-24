@@ -1,4 +1,3 @@
-
 package JDev.Trees;
 
 import java.util.ArrayList;
@@ -10,9 +9,8 @@ public class AVLTree {
 
     private AVLNode root;
 
-
     /**
-     * Add a new element with key "k" into the tree.
+     * Add a new element with key "x" into the tree.
      * 
      * @param x
      *            The key of the new node.
@@ -103,16 +101,24 @@ public class AVLTree {
 
     /**
      * Removes a node from the tree, if it is existent.
+     * @param x The KEY of node to remove.
      */
     public void remove(Comparable x) {
         // First we must find the node, after this we can delete it.
         remove(this.root, x);
     }
 
+    /**
+     * Removes all element
+     */
     public void removeAll() {
         root = null;
     }
 
+    /**
+     * Check tree is empty
+     * @return
+     */
     public boolean isEmpty() {
         return root == null ? true : false;
     }
@@ -192,8 +198,7 @@ public class AVLTree {
      * Left rotation using the given node.
      * 
      * 
-     * @param node
-     *            The node for the rotation.
+     * @param node The node for the rotation.
      * 
      * @return The root of the rotated tree.
      */
@@ -228,8 +233,7 @@ public class AVLTree {
     /**
      * Right rotation using the given node.
      * 
-     * @param node
-     *            The node for the rotation
+     * @param node The node for the rotation
      * 
      * @return The root of the new rotated tree.
      */
@@ -282,7 +286,6 @@ public class AVLTree {
         return rotateLeft(node);
     }
 
-    /***************************** Helper Functions ************************************/
     /**
      * Returns the successor of a given node in the tree (search recursivly).
      * 
@@ -338,10 +341,21 @@ public class AVLTree {
         }
     }
 
+    /**
+     * Find element
+     * @param x Key to find.
+     * @return Key if found, null if not found. (if x is a basic type, method will throw exception if not found)
+     */
     public Comparable find(Comparable x) {
         return find(root, x);
     }
 
+    /**
+     * Find element if it is a basic type
+     * @param x Key to find
+     * @param isBasicDataType true or false is oke
+     * @return @return true if exist (false if not exist)
+     */
     public boolean find(Comparable x, boolean isBasicDataType) {
         try {
             Comparable temp = find(root, x);
@@ -351,6 +365,12 @@ public class AVLTree {
         }
     }
 
+    /**
+     * Find element
+     * @param x Key to find
+     * @param node First node to find
+     * @return Key if exist (null if not exist)
+     */
     private Comparable find(AVLNode node, Comparable x) {
         int result = 0;
         AVLNode cur = node;
@@ -368,6 +388,11 @@ public class AVLTree {
         return null;
     }
 
+    /**
+     * Get ArrayList of element in tree
+     * @param visitMode 
+     * @return ArrayList of element in tree
+     */
     public ArrayList toArrayList(VisitMode visitMode) {
         ArrayList arrayList = new ArrayList();
 
@@ -376,10 +401,21 @@ public class AVLTree {
         return arrayList;
     }
 
+    /**
+     * Get Array of element in tree
+     * @param visitMode 
+     * @return Array of element in tree
+     */
     public Object[] toArray(VisitMode visitMode) {
         return toArrayList(visitMode).toArray();
     }
 
+    /**
+     * Get Array of element in tree
+     * @param visitMode 
+     * @param  a array of element type
+     * @return Array of element in tree
+     */
     public <T> T[] toArray(VisitMode visitMode, T[] a) {
         return (T[]) toArrayList(visitMode).toArray(a);
     }
@@ -461,4 +497,3 @@ public class AVLTree {
         node.balance = height(node.right) - height(node.left);
     }
 }
-/** Here is the AVL-Node class for Completenesse **/

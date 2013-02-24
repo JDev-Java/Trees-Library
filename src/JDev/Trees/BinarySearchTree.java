@@ -1,24 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package JDev.Trees;
 
-// BinarySearchTree class
 import java.util.ArrayList;
 
-//
-// CONSTRUCTION: with no initializer
-//
-// ******************PUBLIC OPERATIONS*********************
-// void insert( x )       --> Insert x
-// void remove( x )       --> Remove x
-// Comparable find( x )   --> Return item that matches x
-// Comparable findMin( )  --> Return smallest item
-// Comparable findMax( )  --> Return largest item
-// boolean isEmpty( )     --> Return true if empty; else false
-// void makeEmpty( )      --> Remove all items
-// void printTree( )      --> Print tree in sorted order
 /**
  * Implements an unbalanced binary search tree.
  * Note that all "matching" is based on the compareTo method.
@@ -74,6 +58,12 @@ public class BinarySearchTree {
         return elementAt(find(x, root));
     }
 
+     /**
+     * Find an item in the tree.
+     * @param x the item to search for.
+     * @param isBasicDataType true or false is oke
+     * @return @return true if found or false if not found
+     */
     public Comparable find(Comparable x, boolean isBasicType) {
         try {
             Comparable t = find(x);
@@ -85,12 +75,17 @@ public class BinarySearchTree {
     }
 
     /**
-     * Make the tree logically empty.
+     * Remove all item in the tree
      */
     public void removeAll() {
         root = null;
     }
 
+     /**
+     * Get ArrayList of item in tree
+     * @param visitMode 
+     * @return ArrayList of item in tree
+     */
     public ArrayList toArrayList(VisitMode visitMode) {
         ArrayList arrayList = new ArrayList();
 
@@ -99,10 +94,21 @@ public class BinarySearchTree {
         return arrayList;
     }
 
+     /**
+     * Get Array of item in tree
+     * @param visitMode 
+     * @return Array of item in tree
+     */
     public Object[] toArray(VisitMode visitMode) {
         return toArrayList(visitMode).toArray();
     }
 
+        /**
+     * Get Array of item in tree
+     * @param visitMode 
+     * @param  a array of item type
+     * @return Array of item in tree
+     */
     public <T> T[] toArray(VisitMode visitMode, T[] a) {
         return (T[]) toArrayList(visitMode).toArray(a);
     }
@@ -152,9 +158,10 @@ public class BinarySearchTree {
         RootLeftRightVisit(node.right, arrayList);
     }
 
+   
     /**
-     * Test if the tree is logically empty.
-     * @return true if empty, false otherwise.
+     * Check tree is empty
+     * @return
      */
     public boolean isEmpty() {
         return root == null;
